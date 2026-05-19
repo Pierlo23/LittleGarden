@@ -6,3 +6,4 @@ tmp/
 .project
 .classpath
 target/
+/build/
