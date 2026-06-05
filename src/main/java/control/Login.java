@@ -71,11 +71,11 @@ public class Login extends HttpServlet {
 				session.setAttribute ("utenteLoggato", utenteTrovato);
 				String ruolo = utenteTrovato.isAdmin()? "admin" : "user";
 				//token
-				session.setAttribute("ruolo", ruolo);
+				session.setAttribute("role", ruolo);
 				if (utenteTrovato.isAdmin()) {
-					response.sendRedirect("admin");
+					response.sendRedirect("admin/welcome");
 				} else {
-					response.sendRedirect("common"); 
+					response.sendRedirect("common/welcome"); 
 					}
 			} else {
 				errors.add("Username o password non validi");

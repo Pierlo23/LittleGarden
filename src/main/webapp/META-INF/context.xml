@@ -9,5 +9,5 @@
               username="root" 
               password="PierDataBase2026" 
               driverClassName="com.mysql.cj.jdbc.Driver"
-              url="jdbc:mysql://localhost:3306/NOME_DEL_TUO_DATABASE?serverTimezone=UTC"/>
+              url="jdbc:mysql://localhost:3306/littlegarden?serverTimezone=UTC"/>
 </Context>
