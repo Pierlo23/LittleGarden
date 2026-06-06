@@ -9,7 +9,7 @@ import model.Utente;
 
 public class UtenteDaoImpl  implements UtenteDao {
 
-		
+		private static final String TABLE_NAME = "utente";
 		private DataSource ds = null;
 		
 		public UtenteDaoImpl(DataSource ds) {
@@ -39,5 +39,23 @@ public class UtenteDaoImpl  implements UtenteDao {
 						}
 				}
 		return utente;
+		}
+		
+		@Override
+		public synchronized void registrazione(Utente utente) throws SQLException {
+			String insertSQL = "INSERT INTO " + TABLE_NAME + " (nome, cognome, email, password, indirizzo, is_admin) VALUES (?, ?, ?, ?, ?, ?)";
+			
+			try (Connection connection = ds.getConnection();
+					PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
+				preparedStatement.setString(1, utente.getNome());
+				preparedStatement.setString(2, utente.getCognome());
+				preparedStatement.setString(3, utente.getEmail());
+				preparedStatement.setString(4, utente.getPassword());
+				preparedStatement.setString(5, utente.getIndirizzo());
+				preparedStatement.setBoolean(6, utente.isAdmin());
+				
+				//aggiotnamento sul database
+				preparedStatement.executeUpdate();
+			}
 		}
 }
