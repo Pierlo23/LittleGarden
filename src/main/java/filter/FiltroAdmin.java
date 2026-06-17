@@ -32,5 +32,5 @@ public class FiltroAdmin extends HttpFilter {
 				//utente non autenticato, torna al login
 				response.sendRedirect(request.getContextPath()+"/login");
 			}
-	}
+}
 }

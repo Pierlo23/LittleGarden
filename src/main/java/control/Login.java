@@ -73,9 +73,9 @@ public class Login extends HttpServlet {
 				//token
 				session.setAttribute("role", ruolo);
 				if (utenteTrovato.isAdmin()) {
-					response.sendRedirect("admin/welcome");
+					response.sendRedirect(request.getContextPath()+"/admin/welcome.html");
 				} else {
-					response.sendRedirect("common/welcome"); 
+					response.sendRedirect("common/welcome.html"); 
 					}
 			} else {
 				errors.add("Username o password non validi");
