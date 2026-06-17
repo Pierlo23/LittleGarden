@@ -31,6 +31,9 @@ if (errors != null){
 	</fieldset>
 </form>
 
+<p>Nuovo utente? 
+    <a href="${pageContext.request.contextPath}/registrazione">Crea un account</a>
+</p>
 
 
 </body>

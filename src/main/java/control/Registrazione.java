@@ -18,23 +18,19 @@ import javax.sql.DataSource;
 import model.Utente;
 
 
-@WebServlet("/Registrazione")
+@WebServlet("/registrazione")
 public class Registrazione extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private UtenteDao utenteDao;   
     
     @Override
-    public void init(ServletConfig servletconfig) throws ServletException {
-    	try {
-    		super.init(servletconfig);
-    		DataSource ds = (DataSource) getServletContext().getAttribute("DataSorce");
-    		if (ds==null) {
-    			throw new ServletException("DataSource non disponibile");
-    		}
-    		utenteDao = new UtenteDaoImpl(ds);
-    	} catch (ServletException e) {
-    		throw e;
-    	}
+    public void init(ServletConfig config) throws ServletException {
+    	super.init(config);
+		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+		if (ds==null) {
+			throw new ServletException("DataSource non disponibile");
+		}
+		utenteDao = new UtenteDaoImpl(ds);
     }
     
 	@Override
