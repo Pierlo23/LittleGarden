@@ -9,7 +9,7 @@ import model.Utente;
 
 public class UtenteDaoImpl  implements UtenteDao {
 
-		private static final String TABLE_NAME = "utente";
+		private static final String TABLE_NAME = "utenti";
 		private DataSource ds = null;
 		
 		public UtenteDaoImpl(DataSource ds) {

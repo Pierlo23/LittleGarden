@@ -83,8 +83,9 @@ public class Registrazione extends HttpServlet {
         	response.sendRedirect(request.getContextPath() + "/login");
         } catch (SQLException e) {
         	errors.add("Errore durante la registrazione");
-            request.setAttribute("errors", errors);
-            request.getRequestDispatcher("/WEB-INF/views/register.jsp").forward(request, response);
+        	e.printStackTrace();
+        	request.setAttribute("errors", errors);
+            request.getRequestDispatcher("/WEB-INF/views/registrazione.jsp").forward(request, response);
         }
 	}
 	

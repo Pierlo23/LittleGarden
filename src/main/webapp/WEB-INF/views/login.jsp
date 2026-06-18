@@ -1,6 +1,7 @@
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,16 +9,18 @@
 <title>Login</title>
 </head>
 <body>
-<% 
-List<String> errors = (List<String>) request.getAttribute("errors");
-if (errors != null){
-	for (String error: errors){ %>
-		<%=error %> <br>		
-	<%
-	}
-}
-%>
-<form action="login" method="post">
+
+<c:if test="${not empty errors}">
+	<div class="error">
+		<ul>
+			<c:forEach var="err" items="${errors}">
+				<li>${err}</li>
+			</c:forEach>	
+		</ul>
+	</div>
+</c:if>
+
+<form action="${pageContext.request.contextPath}/login" method="post">
 	<fieldset>
 		<legend>login</legend>
 		<label for="email">email</label>
