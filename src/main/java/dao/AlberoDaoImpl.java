@@ -1,6 +1,7 @@
 package dao;
 
 import javax.sql.DataSource;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -27,15 +28,26 @@ public class AlberoDaoImpl implements AlberoDao {
 			preparedStatement.setString(2, albero.getDescrizione());
 			preparedStatement.setDouble(3, albero.getPrezzo());
 			preparedStatement.setInt(4, albero.getQuantita());
-			preparedStatement.setString(5, albero.getPathImmagine());
-			preparedStatement.setString(6, albero.getMimeType());
-			preparedStatement.setBoolean(7, albero.isFrutto());
-			preparedStatement.setBoolean(8, albero.isSoftDelete());
+			preparedStatement.setBoolean(5, albero.isFrutto());
+			preparedStatement.setBoolean(6, albero.isSoftDelete());
 		
 			preparedStatement.executeUpdate();
 		}
 				
 	}
+	
+	@Override
+    public synchronized boolean doUpdateImage(Albero albero) throws SQLException {
+        String sql = "UPDATE " + TABLE_NAME + " SET path_immagine = ?, mime_type = ? WHERE id = ?";
+        try (Connection conn = ds.getConnection();
+        		PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, albero.getPathImmagine());
+            ps.setString(2, albero.getMimeType());
+            ps.setInt(3, albero.getIdAlbero());
+            int rowsUpdated = ps.executeUpdate();
+            return rowsUpdated != 0;
+        }
+    }
 	
 	
 	@Override
@@ -65,6 +77,39 @@ public class AlberoDaoImpl implements AlberoDao {
 		return alberi;
 	}
 	
-	//DEVO COMPLETARE
+	@Override
+	 public synchronized Albero doRetrieveByKey(int id) throws SQLException {
+	        Albero bean = new Albero();
+	        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE id = ? AND soft_delete = FALSE";
+	        try (Connection connection = ds.getConnection();
+	        		PreparedStatement preparedStatement = connection.prepareStatement(selectSQL)) {
+	            preparedStatement.setInt(1, id);
+	            try (ResultSet rs = preparedStatement.executeQuery()) {
+	                while (rs.next()) {
+	                	bean.setIdAlbero(rs.getInt("id"));
+	    				bean.setNome(rs.getString("nome"));
+	    				bean.setDescrizione(rs.getString("descrizione"));
+	    				bean.setPrezzo(rs.getDouble("prezzo"));
+	    				bean.setQuantita(rs.getInt("quantita"));
+	    				bean.setPathImmagine(rs.getString("path_immagine"));
+	    				bean.setMimeType(rs.getString("mime_type"));
+	    				bean.setFrutto(rs.getBoolean("frutto"));
+	    				bean.setSoftDelete(rs.getBoolean("soft_delete"));
+	                }
+	            }
+	        }
+	        return bean;
+	    }
+	
+	  @Override
+	    public synchronized boolean doDelete(int id) throws SQLException {
+	        String deleteSQL = "UPDATE " + TABLE_NAME + " SET soft_delete = TRUE WHERE ID  = ?";
+	        try (Connection connection = ds.getConnection();
+	        		PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL)) {
+	            preparedStatement.setInt(1, id);
+	            int result = preparedStatement.executeUpdate();
+	            return result != 0;
+	        }
+	    }
 	
 }
