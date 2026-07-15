@@ -17,9 +17,9 @@
 		<ul>
 			<li><a href="${pageContext.request.contextPath}/Catalogo">Catalogo</a></li>
 			<li>
-				<a href="${pageContext.request.contextPath}/Catalogo?action=mostraCarrello">
-					Carrello <c:if test="${not empty carrello}">
-						(${carrello.alberi.size()})
+				<a href="${pageContext.request.contextPath}/Carrello">
+					Carrello <c:if test="${not empty sessionScope.carrello}">
+						(${sessionScope.carrello.alberi.size()})
 					</c:if>
 				</a>
 			</li>
@@ -28,7 +28,9 @@
                     <li><a href="${pageContext.request.contextPath}/Login">Login / Registrati</a></li>
                 </c:when>
                 <c:otherwise>
-                    <li><a href="${pageContext.request.contextPath}/Admin">Area Admin</a></li>
+                    <c:if test="${sessionScope.utenteLoggato.admin}">
+                    <li><a href="${pageContext.request.contextPath}/Admin/GestioneCatalogo">Area Admin</a></li>
+                    </c:if>
                     <li><a href="${pageContext.request.contextPath}/Logout">Esci</a></li>
                 </c:otherwise>
 			</c:choose>
@@ -40,17 +42,19 @@
 		<h2>Catalogo</h2>
 		<div class="prodotti">
 			<c:forEach var="albero" items="${alberi}">
+				<c:if test="${!albero.softDelete }">
 				<div class="prodotto">
-					<img src="${pageContext.request.contextPath}/Immagini?action=show&id=${albero.idAlbero}" alt="Foto ${albero.nome}" width="200">
+					<img src="${pageContext.request.contextPath}/Immagini?action=show&id=${albero.idAlbero}" alt= "Foto <:out value='${albero.nome}'/>" width="200">
 					<h2><c:out value="${albero.nome}"/></h2>
                     <p>Descrizione: <c:out value="${albero.descrizione}"/></p>
                     <p>Prezzo: &euro; <c:out value="${albero.prezzo}"/></p>
-                    <form action="${pageContext.request.contextPath}/Catalogo" method="POST">
+                    <form action="${pageContext.request.contextPath}/Carrello" method="POST">
                     	<input type="hidden" name="action" value="addC">
                     	<input type="hidden" name="id" value="${albero.idAlbero}">
                     	<input type="submit" value="Aggiungi al Carrello">
                     </form>
 				</div>
+				</c:if>
 			</c:forEach>
 		</div>
 	</div>

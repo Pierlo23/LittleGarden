@@ -1,12 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Carrello</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css">
 </head>
 <body>
-
+	<div id="navbar">
+		<a href="${pageContext.request.contextPath}/Catalogo">
+			<img src="${pageContext.request.contextPath}/immagini/logo.png" alt="logo LittleGarden" width="150">
+		</a>
+		<ul>
+			<li><a href="${pageContext.request.contextPath}/Catalogo">Catalogo</a></li>
+			<li>
+				<a href="${pageContext.request.contextPath }/Carrello">
+					Carrello <c:if test="${not empty sessionScope.carrello }">
+					 (<:out value="${sessionScope.carrello.alberi.size()}"/>)
+					</c:if>
+				</a>
+			</li>
+			<c:choose>
+				<c:when test="${empty sessionScope.utenteLoggato }">
+				<li><a href="${pageContext.request.contextPath}/Login">Login / Registrazione</a></li>
+			</c:when>
+			<c:otherwise>
+                	<c:if test="${sessionScope.utenteLoggato.admin}">
+                    	<li><a href="${pageContext.request.contextPath}/admin/GestioneCatalogo">Area Admin</a></li>
+                    </c:if>
+                    <li><a href="${pageContext.request.contextPath}/Logout">Esci</a></li>
+            </c:otherwise>
+			</c:choose>
+		</ul>
+	</div>
+	
+	<div id="contenutoCarrello">
+		<h2>Carrello</h2>
+		<c:choose>
+			<c:when test="${empty sessionScope.carrello or empty sessionScope.carrello.alberi}">
+				<p>Il tuo carrello è vuoto</p>
+			    <a href="${pageContext.request.contextPath}/Catalogo" class="btn">Torna la catalogo</a>
+			</c:when>
+			<c:otherwise> 
+				<div classe="listacarrello">
+					<h3><c:out value="${albero.nome"/}</h3>
+						<p>Prezzo: &euro; <c:out value="${albero.prezzo}"/></p>
+				</div>
+			</c:otherwise>
+		</c:choose>
+	</div>
+	
 </body>
 </html>
