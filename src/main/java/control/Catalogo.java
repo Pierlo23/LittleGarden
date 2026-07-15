@@ -2,8 +2,6 @@ package control;
 
 import dao.AlberoDao;
 import dao.AlberoDaoImpl;
-import model.Albero;
-import model.Carrello;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
@@ -45,88 +43,14 @@ public class Catalogo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
-		if (carrello == null) {
-			carrello = new Carrello();
-			request.getSession().setAttribute("carrello", carrello);
-		}
-		processAction(request,carrello);
-		request.getSession().setAttribute("carrello", carrello);
-		//carica la lista di prodotti nella richiesta per la vista
-		loadListaAlbero(request);
-		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/AlberiView.jsp");
-		dispatcher.forward(request, response);
-	}
-
-	private void processAction(HttpServletRequest request, Carrello carrello) {
-		String action = request.getParameter("action");
-		try {
-			if (action != null) {
-				if (action.equalsIgnoreCase("addC")) {
-					aggiungiAlCarrello(request, carrello);
-				} else if (action.equalsIgnoreCase("deleteC")) {
-					rimuoviAlberoCarrello(request, carrello);
-				} else if (action.equalsIgnoreCase("read")) {
-					leggiSingoloAlbero(request);
-				} else if (action.equalsIgnoreCase("delete")) {
-					deleteAlbero(request);
-				} else if (action.equalsIgnoreCase("insert")) {
-					insertAlbero(request);
-				}
-			}
-		} catch (SQLException e) {
-			System.err.println("Error:" + e.getMessage());
-		}
-	}
-	
-	private void insertAlbero(HttpServletRequest request) throws SQLException {
-		//lettura parametri
-		String nome = request.getParameter("nome");
-		String descrizione = request.getParameter("descrizione");
-		double prezzo = Double.parseDouble(request.getParameter("prezzo"));
-		int quantita = Integer.parseInt(request.getParameter("quantita"));
-		boolean frutto = request.getParameter("frutto") != null;
-		//creazione oggetto
-		Albero albero = new Albero();
-		albero.setNome(nome);
-		albero.setDescrizione(descrizione);
-		albero.setPrezzo(prezzo);
-		albero.setQuantita(quantita);
-		albero.setFrutto(frutto);
-		albero.setSoftDelete(false);
-		alberoDao.doSave(albero);
-	}
-
-	private void deleteAlbero(HttpServletRequest request) throws SQLException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		alberoDao.doDelete(id);
-	}
-	
-	private void leggiSingoloAlbero(HttpServletRequest request) throws SQLException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		request.setAttribute("albero", alberoDao.doRetrieveByKey(id));
-	}
-	
-	private void rimuoviAlberoCarrello(HttpServletRequest request, Carrello carrello) 
-			throws SQLException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		carrello.deleteAlbero(alberoDao.doRetrieveByKey(id));
-	}
-	
-	private void aggiungiAlCarrello(HttpServletRequest request, Carrello carrello) 
-			throws SQLException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		carrello.addAlbero(alberoDao.doRetrieveByKey(id));
-	}
-	
-	private void loadListaAlbero(HttpServletRequest request) {
 		String sort = request.getParameter("sort");
 		try {
 			request.setAttribute("alberi", alberoDao.doRetrieveAll(sort));
 		} catch (SQLException e) {
 			System.err.println("Error:" + e.getMessage());
 		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/catalogo.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

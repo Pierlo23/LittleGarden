@@ -25,10 +25,14 @@ import dao.AlberoDaoImpl;
 
 
 
+
 /**
  * Servlet implementation class Immagini
  */
 @WebServlet("/Immagini")
+@jakarta.servlet.annotation.MultipartConfig(maxFileSize = 5 * 1024 * 1024, // max 5 MB per file
+maxRequestSize = 10 * 1024 * 1024, // max 10 MB per request
+fileSizeThreshold = 2* 1024 * 1024)
 public class Immagini extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -114,7 +118,7 @@ public class Immagini extends HttpServlet {
 				}
 			}
 		}
-		response.sendRedirect("product");
+		response.sendRedirect("AlberoControl");
 	}
 
 	private String buildUniqueFileName(Part part) {

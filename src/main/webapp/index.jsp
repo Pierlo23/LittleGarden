@@ -7,6 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Little garden</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css">
 </head>
 <body>
 	<header>
@@ -21,6 +22,7 @@
 					<li><a href="${pageContext.request.contextPath}/registrazione">Registrati</a></li>
 				</c:when>
 				<c:otherwise>
+					<li></li>
 					<li><a href="${pageContext.request.contextPath}/logout">Esci</a>
 				</c:otherwise>
 			</c:choose>
@@ -30,23 +32,9 @@
 	<header class="hero">
 		<h1>Coltiva il tuo giardino virtuale</h1>
 		<p>Scegli le tue piante, seguine lo sviluppo e ricevine i frutti direttamente a casa</p>
+		<a href="${pageContext.request.contextPath}/Catalogo?action=mostraCatalogo" class="btn-hero">Catalogo</a>
 	</header>
-	
-	<div class="vetrina">
-		<h2>le nostre piante</h2>
-		<div class="grid-prodotti">
-			<div class="card-prodotto">
-				<h3>Pianta 1</h3>
-				<p>prezzo 1</p>
-			</div>
-			
-			<div class="card-prodotto">
-				<h3>Pianta 2</h3>
-				<p>prezzo 2</p>
-			</div>
-		</div>
-	</div>
-	
+		
 	<footer>
 	
 	</footer>
