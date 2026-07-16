@@ -25,7 +25,8 @@
 			</li>
 			<c:choose>
 				<c:when test="${empty sessionScope.utenteLoggato}">
-                    <li><a href="${pageContext.request.contextPath}/Login">Login / Registrati</a></li>
+                    <li><a href="${pageContext.request.contextPath}/login">Login</a></li>
+                    <li><a href="${pageContext.request.contextPath}/registrazione">Registrati</a></li>
                 </c:when>
                 <c:otherwise>
                     <c:if test="${sessionScope.utenteLoggato.admin}">

@@ -19,7 +19,7 @@
 			<li>
 				<a href="${pageContext.request.contextPath }/Carrello">
 					Carrello <c:if test="${not empty sessionScope.carrello }">
-					 (<:out value="${sessionScope.carrello.alberi.size()}"/>)
+					 (<c:out value="${sessionScope.carrello.alberi.size()}"/>)
 					</c:if>
 				</a>
 			</li>
@@ -45,9 +45,31 @@
 			    <a href="${pageContext.request.contextPath}/Catalogo" class="btn">Torna la catalogo</a>
 			</c:when>
 			<c:otherwise> 
-				<div classe="listacarrello">
-					<h3><c:out value="${albero.nome"/}</h3>
-						<p>Prezzo: &euro; <c:out value="${albero.prezzo}"/></p>
+				<div class="listacarrello">
+					<c:forEach var="albero" items="${sessionScope.carrello.alberi}">
+						<div class="prodottocarrello">
+						<img src="${pageContext.request.contextPath}/immagini?action=show&id=${albero.idAlbero}" alt="foto <c:out value='${albero.nome}'/>" width="100">
+					
+					<div class="infocarrello">	
+						<h3><c:out value="${albero.nome}"/></h3>
+							<p>Prezzo: &euro; <c:out value="${albero.prezzo}"/></p>
+					</div>
+					<form action="${pageContext.request.contextPath}/Carrello" method="POST">
+						<input type="hidden" name="action" value="deleteC">
+						<input type="hidden" name="id" value= "<c:out value='${albero.idAlbero}'/>">
+						<input type="submit" value="Rimuovi" class="btn-rimuovi">
+					</form>
+						</div>
+					</c:forEach>
+				</div>
+				<div class="riepilogocarrello">
+					<h3>Totale: &euro; <c:out value="${sessionScope.carrello.prezzoTotale}"/></h3>
+					<div class="azioniCarrello">
+						<a href="${pageContext.request.contextPath}/Catalogo" class="btn">Continua gli acquisti</a>
+						<form action="${pageContext.request.contextPath}/Checkout" method="GET">
+							<input type="submit" value="Procedi al Checkout" class="btn-checkout">
+						</form>
+					</div>
 				</div>
 			</c:otherwise>
 		</c:choose>
