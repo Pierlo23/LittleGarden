@@ -28,8 +28,10 @@ public class AlberoDaoImpl implements AlberoDao {
 			preparedStatement.setString(2, albero.getDescrizione());
 			preparedStatement.setDouble(3, albero.getPrezzo());
 			preparedStatement.setInt(4, albero.getQuantita());
-			preparedStatement.setBoolean(5, albero.isFrutto());
-			preparedStatement.setBoolean(6, albero.isSoftDelete());
+			preparedStatement.setString(5, null); 
+	        preparedStatement.setString(6, null);
+			preparedStatement.setBoolean(7, albero.isFrutto());
+			preparedStatement.setBoolean(8, false);
 		
 			preparedStatement.executeUpdate();
 		}

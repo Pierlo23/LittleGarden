@@ -40,7 +40,7 @@
 		<div class="gestione alberi">
 			<h2>Gestione catalogo</h2>
 			<table class="tabellaadmin" border="1">
-				<thread>
+				<thead>
 					<tr>
 						<th>ID</th>
 						<th>Nome</th>
@@ -50,7 +50,7 @@
 						<th>Upload Immagine (Step 2)</th>
 						<th>Azioni</th>
 					</tr>
-				</thread>
+				</thead>
 				<tbody>
 					<c:forEach var="albero" items="${alberi}">
 						<tr>
@@ -71,7 +71,7 @@
 							</td>
 							
 							<td>
-								<form action="${pageContext.request.contextPath}/admin/ImageControl" method="POST" enctype="multipart/form-data">
+								<form action="${pageContext.request.contextPath}/admin/Immagini" method="POST" enctype="multipart/form-data">
 									<input type="hidden" name="id" value="<c:out value='${albero.idAlbero}'/>">
 									<input type="file" name="immagine" accept="image/*" required>
 									<input type="submit" value="Carica Foto">
@@ -89,6 +89,7 @@
 							</td>
 						</tr>
 					</c:forEach>
+					</tbody>
 			</table>
 
 		</div>

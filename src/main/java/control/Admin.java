@@ -66,6 +66,7 @@ public class Admin extends HttpServlet {
 		} catch (SQLException e ) {
 			System.err.println("Error: " + e.getMessage());
 		}
+		response.sendRedirect(request.getContextPath() + "/admin/GestioneCatalogo");
 	}
 
 	private void deleteAlbero(HttpServletRequest request) throws SQLException {
@@ -89,7 +90,6 @@ public class Admin extends HttpServlet {
 		albero.setFrutto(frutto);
 		albero.setSoftDelete(false);
 		alberoDao.doSave(albero);
-		
 	}
 
 }

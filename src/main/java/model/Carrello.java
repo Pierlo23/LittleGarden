@@ -26,8 +26,14 @@ public class Carrello implements Serializable {
 		}
 	}
 
-	public List<Albero> getProducts() {
+	public List<Albero> getAlberi() {
 		return alberi;
 	}
-
+	public double getPrezzoTotale() {
+	    double totale = 0.0;
+	    for (Albero albero : alberi) {
+	        totale += albero.getPrezzo();
+	    }
+	    return totale;
+	}
 }

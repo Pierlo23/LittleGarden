@@ -6,8 +6,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.Albero;
-
+import model.Utente;
 import jakarta.servlet.http.Part;
 import java.io.File;
 
@@ -95,6 +96,14 @@ public class Immagini extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
+		HttpSession session = request.getSession();
+		Utente utente = (Utente) session.getAttribute("utenteLoggato");
+		
+		if(utente==null || !utente.isAdmin()) {
+			response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Accesso negato");
+			return;
+		}
+		
 		if ("upload".equalsIgnoreCase(action)) {
 			int idAlbero = Integer.parseInt(request.getParameter("idAlbero"));
 			Part part = request.getPart("immagine");
@@ -118,7 +127,7 @@ public class Immagini extends HttpServlet {
 				}
 			}
 		}
-		response.sendRedirect("AlberoControl");
+		response.sendRedirect("admin/GestioneCatalogo");
 	}
 
 	private String buildUniqueFileName(Part part) {
