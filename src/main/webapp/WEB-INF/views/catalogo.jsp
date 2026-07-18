@@ -30,7 +30,7 @@
                 </c:when>
                 <c:otherwise>
                     <c:if test="${sessionScope.utenteLoggato.admin}">
-                    <li><a href="${pageContext.request.contextPath}/Admin/GestioneCatalogo">Area Admin</a></li>
+                    <li><a href="${pageContext.request.contextPath}/admin/GestioneCatalogo">Area Admin</a></li>
                     </c:if>
                     <li><a href="${pageContext.request.contextPath}/Logout">Esci</a></li>
                 </c:otherwise>

@@ -18,7 +18,7 @@ import dao.AlberoDaoImpl;
 
 
  
-@WebServlet("/admin/*")
+@WebServlet("/admin/GestioneCatalogo")
 public class Admin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private AlberoDao alberoDao;
@@ -46,7 +46,7 @@ public class Admin extends HttpServlet {
     
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	request.getRequestDispatcher("/WEB-INF/views/admin/welcome.html").forward(request, response);
+    	request.getRequestDispatcher("/WEB-INF/views/admin/Console.jsp").forward(request, response);
 	}
 
 	/**

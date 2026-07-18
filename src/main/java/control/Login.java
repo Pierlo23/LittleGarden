@@ -73,7 +73,7 @@ public class Login extends HttpServlet {
 				//token
 				session.setAttribute("role", ruolo);
 				if (utenteTrovato.isAdmin()) {
-					response.sendRedirect(request.getContextPath()+"/admin/welcome.html");
+					response.sendRedirect(request.getContextPath()+"/admin/GestioneCatalogo");
 				} else {
 					response.sendRedirect("common/welcome.html"); 
 					}
