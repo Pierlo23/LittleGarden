@@ -55,7 +55,8 @@ public class CarrelloServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-        Carrello carrello = (Carrello) session.getAttribute("carrello");
+        synchronized (session) {
+		Carrello carrello = (Carrello) session.getAttribute("carrello");
         if (carrello == null) {
             carrello = new Carrello();
             session.setAttribute("carrello", carrello);
@@ -74,7 +75,8 @@ public class CarrelloServlet extends HttpServlet {
         } catch (SQLException e) {
             System.err.println("Error:" + e.getMessage());
         }
-        session.setAttribute("carrello", carrello);
+        }
+
         response.sendRedirect(request.getContextPath() + "/Catalogo");
 	}
 

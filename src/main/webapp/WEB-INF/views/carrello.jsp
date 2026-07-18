@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css">
 </head>
 <body>
-	<div id="navbar">
+	<nav id="navbar">
 		<a href="${pageContext.request.contextPath}/Catalogo">
 			<img src="${pageContext.request.contextPath}/immagini/logo.png" alt="logo LittleGarden" width="150">
 		</a>
@@ -35,7 +35,7 @@
             </c:otherwise>
 			</c:choose>
 		</ul>
-	</div>
+	</nav>
 	
 	<div id="contenutoCarrello">
 		<h2>Carrello</h2>

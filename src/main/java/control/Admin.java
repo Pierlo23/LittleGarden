@@ -46,7 +46,14 @@ public class Admin extends HttpServlet {
     
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	request.getRequestDispatcher("/WEB-INF/views/admin/Console.jsp").forward(request, response);
+    	try {
+            request.setAttribute("alberi", alberoDao.doRetrieveAll(""));
+            
+        } catch (SQLException e) {
+            System.err.println("Errore nel recupero alberi: " + e.getMessage());
+            request.setAttribute("alberi", new java.util.ArrayList<Albero>());
+        }
+        request.getRequestDispatcher("/WEB-INF/views/admin/Console.jsp").forward(request, response);
 	}
 
 	/**
