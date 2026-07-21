@@ -75,7 +75,7 @@ public class Login extends HttpServlet {
 				if (utenteTrovato.isAdmin()) {
 					response.sendRedirect(request.getContextPath()+"/admin/GestioneCatalogo");
 				} else {
-					response.sendRedirect("common/welcome.html"); 
+					response.sendRedirect(request.getContextPath()+"/Home"); 
 					}
 			} else {
 				errors.add("Username o password non validi");

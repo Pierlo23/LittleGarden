@@ -19,12 +19,9 @@ public class FiltroCommon extends HttpFilter {
 		throws IOException, ServletException {
 		
 			HttpSession session = request.getSession(false);
-			//verifico l'autenticazione
 			if (session != null && session.getAttribute("utenteLoggato")!=null) {
-				//se l'utente è loggato può accedere a tutte le pagine common
 				chain.doFilter(request, response);
 			} else {
-				//utente non autenticato, torna al login
 				response.sendRedirect(request.getContextPath()+"/login");
 			}
 			

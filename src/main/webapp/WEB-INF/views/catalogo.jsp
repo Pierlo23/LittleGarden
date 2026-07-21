@@ -11,7 +11,7 @@
 </head>
 <body>
 	<nav id="navbar">
-		<a href="${pageContext.request.contextPath}/Catalogo">
+		<a href="${pageContext.request.contextPath}/Home">
 			<img src="${pageContext.request.contextPath}/immagini/logo.png" alt="logo LittleGarden" width="150">
 		</a>
 		<ul>
@@ -32,6 +32,7 @@
                     <c:if test="${sessionScope.utenteLoggato.admin}">
                     <li><a href="${pageContext.request.contextPath}/admin/GestioneCatalogo">Area Admin</a></li>
                     </c:if>
+                    <li><a href="${pageContext.request.contextPath}/common/Giardino">Il tuo giardino</a>
                     <li><a href="${pageContext.request.contextPath}/Logout">Esci</a></li>
                 </c:otherwise>
 			</c:choose>

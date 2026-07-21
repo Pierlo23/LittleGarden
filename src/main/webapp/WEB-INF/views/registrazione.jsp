@@ -8,6 +8,10 @@
 	<title>Registrazione</title>
 </head>
 <body>
+	<a href="${pageContext.request.contextPath}/Home">
+		<img src="${pageContext.request.contextPath}/immagini/logo.png" alt="logo LittleGarden" width="150">
+	</a>
+	
 	<h2>REGISTRAZIONE NUOVO UTENTE</h2>
 	
 	<c:if test="${not empty errors}">

@@ -23,17 +23,17 @@ public class AlberoDaoImpl implements AlberoDao {
 	public synchronized void doSave(Albero albero) throws SQLException {
 		String insertSQL = "INSERT INTO " + TABLE_NAME + "(nome, descrizione, prezzo, quantita, path_immagine, mime_type, frutto, soft_delete) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		try (Connection connection = ds.getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
-			preparedStatement.setString(1, albero.getNome());
-			preparedStatement.setString(2, albero.getDescrizione());
-			preparedStatement.setDouble(3, albero.getPrezzo());
-			preparedStatement.setInt(4, albero.getQuantita());
-			preparedStatement.setString(5, null); 
-	        preparedStatement.setString(6, null);
-			preparedStatement.setBoolean(7, albero.isFrutto());
-			preparedStatement.setBoolean(8, false);
+				PreparedStatement ps = connection.prepareStatement(insertSQL)) {
+			ps.setString(1, albero.getNome());
+			ps.setString(2, albero.getDescrizione());
+			ps.setDouble(3, albero.getPrezzo());
+			ps.setInt(4, albero.getQuantita());
+			ps.setString(5, null); 
+	        ps.setString(6, null);
+			ps.setBoolean(7, albero.isFrutto());
+			ps.setBoolean(8, false);
 		
-			preparedStatement.executeUpdate();
+			ps.executeUpdate();
 		}
 				
 	}
@@ -60,8 +60,8 @@ public class AlberoDaoImpl implements AlberoDao {
 			selectSQL += " ORDER BY " + order; //devo aggiungere whitelist per SQLInjection
 		}
 		try (Connection connection = ds.getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
-				ResultSet rs = preparedStatement.executeQuery()) {
+				PreparedStatement ps = connection.prepareStatement(selectSQL);
+				ResultSet rs = ps.executeQuery()) {
 			while (rs.next()) {
 				Albero bean = new Albero();
 				bean.setIdAlbero(rs.getInt("id"));
@@ -84,9 +84,9 @@ public class AlberoDaoImpl implements AlberoDao {
 	        Albero bean = new Albero();
 	        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE id = ? AND soft_delete = FALSE";
 	        try (Connection connection = ds.getConnection();
-	        		PreparedStatement preparedStatement = connection.prepareStatement(selectSQL)) {
-	            preparedStatement.setInt(1, id);
-	            try (ResultSet rs = preparedStatement.executeQuery()) {
+	        		PreparedStatement ps = connection.prepareStatement(selectSQL)) {
+	            ps.setInt(1, id);
+	            try (ResultSet rs = ps.executeQuery()) {
 	                while (rs.next()) {
 	                	bean.setIdAlbero(rs.getInt("id"));
 	    				bean.setNome(rs.getString("nome"));

@@ -71,9 +71,10 @@
 							</td>
 							
 							<td>
-								<form action="${pageContext.request.contextPath}/admin/Immagini" method="POST" enctype="multipart/form-data">
-									<input type="hidden" name="id" value="<c:out value='${albero.idAlbero}'/>">
+								<form action="${pageContext.request.contextPath}/Immagini" method="POST" enctype="multipart/form-data">
+									<input type="hidden" name="action" value="upload">
 									<input type="file" name="immagine" accept="image/*" required>
+									<input type="hidden" name="idAlbero" value="<c:out value='${albero.idAlbero}'/>">
 									<input type="submit" value="Carica Foto">
 								</form>
 							</td>

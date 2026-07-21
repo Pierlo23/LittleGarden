@@ -11,7 +11,7 @@
 </head>
 <body>
 	<nav id="navbar">
-		<a href="${pageContext.request.contextPath}/Catalogo">
+		<a href="${pageContext.request.contextPath}/Home">
 			<img src="${pageContext.request.contextPath}/immagini/logo.png" alt="logo LittleGarden" width="150">
 		</a>
 		<ul>

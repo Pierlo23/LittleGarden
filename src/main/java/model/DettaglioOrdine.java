@@ -9,6 +9,9 @@ public class DettaglioOrdine implements Serializable {
 	private int idOrdine;
 	private int idAlbero;
 	private int quantita;
+	private double prezzoPagato;
+	private String nomeAlbero;
+	private String pathImmagine;
 	
 	public DettaglioOrdine () {
 		
@@ -56,6 +59,30 @@ public class DettaglioOrdine implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public double getPrezzoPagato() {
+		return prezzoPagato;
+	}
+
+	public void setPrezzoPagato(double prezzoPagato) {
+		this.prezzoPagato = prezzoPagato;
+	}
+
+	public String getNomeAlbero() {
+		return nomeAlbero;
+	}
+
+	public void setNomeAlbero(String nomeAlbero) {
+		this.nomeAlbero = nomeAlbero;
+	}
+
+	public String getPathImmagine() {
+		return pathImmagine;
+	}
+
+	public void setPathImmagine(String pathImmagine) {
+		this.pathImmagine = pathImmagine;
 	}
 	
 	
