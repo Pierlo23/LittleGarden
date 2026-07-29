@@ -18,9 +18,9 @@ public class Carrello implements Serializable {
 	}
 
 	public void deleteAlbero(Albero albero) {
-		for (Albero prod : alberi) {
-			if (prod.getIdAlbero() == albero.getIdAlbero()) {
-				alberi.remove(prod);
+		for (Albero alb : alberi) {
+			if (alb.getIdAlbero() == albero.getIdAlbero()) {
+				alberi.remove(alb);
 				break;
 			}
 		}
@@ -35,5 +35,10 @@ public class Carrello implements Serializable {
 	        totale += albero.getPrezzo();
 	    }
 	    return totale;
+	}
+
+	public void svuota() {
+		this.alberi.clear();
+		
 	}
 }

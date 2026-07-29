@@ -13,7 +13,7 @@ import model.DettaglioOrdine;
 
 public class DettaglioOrdineDaoImpl implements DettaglioOrdineDao{
 	
-	private static final String TABLE_NAME = "ordine_dettaglio";
+	private static final String TABLE_NAME = "dettaglio_ordine";
 	private DataSource ds = null;
 	
 	public DettaglioOrdineDaoImpl (DataSource ds) {

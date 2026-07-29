@@ -66,7 +66,7 @@
 					<h3>Totale: &euro; <c:out value="${sessionScope.carrello.prezzoTotale}"/></h3>
 					<div class="azioniCarrello">
 						<a href="${pageContext.request.contextPath}/Catalogo" class="btn">Continua gli acquisti</a>
-						<form action="${pageContext.request.contextPath}/Checkout" method="GET">
+						<form action="${pageContext.request.contextPath}/Checkout" method="POST">
 							<input type="submit" value="Procedi al Checkout" class="btn-checkout">
 						</form>
 					</div>

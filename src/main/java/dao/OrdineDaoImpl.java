@@ -17,7 +17,7 @@ import model.Ordine;
 public class OrdineDaoImpl implements OrdineDao {
 
 	private static final String TABLE_ORDINI = "ordini";
-	private static final String TABLE_DETTAGLIO = "dattaglio_ordine";
+	private static final String TABLE_DETTAGLIO = "dettaglio_ordine";
 	private static final String TABLE_ALBERI = "alberi";
 	private static final String TABLE_GIARDINO = "giardini";
 	
@@ -50,7 +50,7 @@ public class OrdineDaoImpl implements OrdineDao {
 
 	@Override
 	public int checkout(int idUtente, Carrello carrello) throws SQLException {
-		String insertOrdineSQL = "INSERT INTO " + TABLE_ORDINI + " (id_utente, data_ordine, totale) VALUES (?, NOW(), ?)";
+		String insertOrdineSQL = "INSERT INTO " + TABLE_ORDINI + " (id_utente, data_ordine, totale, spedizione) VALUES (?, NOW(), ?, ?)";
 		String insertDettaglioSQL = "INSERT INTO " + TABLE_DETTAGLIO + " (id_ordine, id_albero, quantita, prezzo_pagato) VALUES (?, ?, ?, ?)";
 		String scaricoSQL = "UPDATE " + TABLE_ALBERI + " SET quantita = quantita - ? WHERE id = ? AND quantita >= ?";
 		String insertGiardinoSQL = "INSERT INTO " + TABLE_GIARDINO + " (id_utente, id_albero, quantita) VALUES (?, ?, ?) "
@@ -63,6 +63,7 @@ public class OrdineDaoImpl implements OrdineDao {
 				 try (PreparedStatement ps = connection.prepareStatement(insertOrdineSQL, Statement.RETURN_GENERATED_KEYS)) {
 					 ps.setInt(1, idUtente);
 					 ps.setDouble(2, carrello.getPrezzoTotale());
+					 ps.setBoolean(3, false);					 
 					 ps.executeUpdate();
 				 
 					 try(ResultSet rs = ps.getGeneratedKeys()) {
@@ -83,9 +84,14 @@ public class OrdineDaoImpl implements OrdineDao {
 						psDettaglio.setInt(3, 1);
 						psDettaglio.setDouble(4, albero.getPrezzo());
 						psDettaglio.executeUpdate();
-						psScarico.setInt(1, albero.getIdAlbero());
+						psScarico.setInt(1, 1);
+						psScarico.setInt(2, albero.getIdAlbero());
+						psScarico.setInt(3, 1);
+					    psScarico.executeUpdate();
 						psGiardino.setInt(1, idUtente);
 						psGiardino.setInt(2, albero.getIdAlbero());
+						psGiardino.setInt(3, 1);
+					    psGiardino.setInt(4, 1);
 						psGiardino.executeUpdate();
 					}
 				 }
