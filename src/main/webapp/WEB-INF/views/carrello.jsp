@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Carrello</title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css">
+	<link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
 	<nav id="navbar">

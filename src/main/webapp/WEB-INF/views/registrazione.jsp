@@ -6,6 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Registrazione</title>
+	<link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
 	<a href="${pageContext.request.contextPath}/Home">
@@ -25,7 +26,7 @@
 	</c:if>
 	
 	
-    <form action="${pageContext.request.contextPath}/registrazione" method="post">
+    <form class="login" action="${pageContext.request.contextPath}/registrazione" method="post">
         
         <label>Nome:</label><br>
         <input type="text" name="nome" value="${nome}"><br><br>

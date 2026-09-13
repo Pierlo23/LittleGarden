@@ -8,6 +8,7 @@ public class Giardino implements Serializable {
 	private int idUtente;
 	private int idAlbero;
 	private int quantita;
+	private Albero albero;
 	
 	public Giardino() {
 		
@@ -42,6 +43,14 @@ public class Giardino implements Serializable {
 
 	public void setQuantita(int quantita) {
 		this.quantita = quantita;
+	}
+
+	public Albero getAlbero() {
+		return albero;
+	}
+
+	public void setAlbero(Albero albero) {
+		this.albero = albero;
 	}
 	
 

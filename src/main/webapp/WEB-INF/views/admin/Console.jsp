@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Console Admin</title>
+<link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
 	<div id="navbar">

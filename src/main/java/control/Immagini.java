@@ -37,7 +37,7 @@ fileSizeThreshold = 2* 1024 * 1024)
 public class Immagini extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-	private static final String UPLOAD_DIR = "Immagini";
+	private static final String UPLOAD_DIR = "C:" + File.separator + "Users" + File.separator + "Public" + File.separator + "littlegarden-uploads";
 
 	private AlberoDao alberoDao;
 	

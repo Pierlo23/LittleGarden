@@ -5,8 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Login</title>
+	<meta charset="UTF-8">
+	<title>Login</title>
+	<link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
 
@@ -24,21 +25,23 @@
 	</div>
 </c:if>
 
-<form action="${pageContext.request.contextPath}/login" method="post">
+<form class="login" action="${pageContext.request.contextPath}/login" method="post">
 	<fieldset>
-		<legend>login</legend>
-		<label for="email">email</label>
+		<legend>Login</legend>
+		<label for="email">Email</label>
 		<input id="email" type="text" name="email" placeholder="inserisci l'email">
      	<br>   
      	<label for="password">Password</label>
      	<input id="password" type="password" name="password" placeholder="inserisci la password">
      	<br>
-     	<input type="submit" value="Login"/>
-     	<input type="reset" value="Reset"/>
+     	<div class="pulsanti">
+     		<input class="pulsante" type="submit" value="Login"/>
+     		<input class="pulsante" type="reset" value="Reset"/>
+		</div>
 	</fieldset>
 </form>
 
-<p>Nuovo utente? 
+<p id="crea">Nuovo utente? 
     <a href="${pageContext.request.contextPath}/registrazione">Crea un account</a>
 </p>
 

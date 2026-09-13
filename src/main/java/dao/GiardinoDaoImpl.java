@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import model.Albero;
 import model.Giardino;
 
 public class GiardinoDaoImpl implements GiardinoDao {
@@ -23,8 +24,8 @@ public class GiardinoDaoImpl implements GiardinoDao {
 	@Override
 	public synchronized List<Giardino> doRetrieveByUtente(int idUtente) throws SQLException {
 		List<Giardino> alberiPosseduti = new LinkedList<>();
-		String selectSQL = "SELECT g.id_utente, g.id_albero, "
-				+ "a.nome, a.path_immagine "
+		String selectSQL = "SELECT g.id_utente, g.id_albero, g.quantita, "
+				+ "a.nome, a.path_immagine, a.frutto "
 				+ "FROM " + TABLE_NAME + " g "
 				+ "JOIN alberi a ON g.id_albero = a.id "
 				+ "WHERE g.id_utente = ? ";
@@ -34,10 +35,17 @@ public class GiardinoDaoImpl implements GiardinoDao {
 			ps.setInt(1, idUtente);
 			try (ResultSet rs = ps.executeQuery()) {
 				while (rs.next()) {
-					Giardino bean = new Giardino();
-					bean.setIdUtente(rs.getInt("id_utente"));
-					bean.setIdAlbero(rs.getInt("id_albero"));
-					alberiPosseduti.add(bean);
+					Giardino beanGiardino = new Giardino();
+					beanGiardino.setIdUtente(rs.getInt("id_utente"));
+					beanGiardino.setIdAlbero(rs.getInt("id_albero"));
+					beanGiardino.setQuantita(rs.getInt("quantita"));
+					Albero beanAlbero = new Albero();
+					beanAlbero.setIdAlbero(rs.getInt("id_albero"));
+				    beanAlbero.setNome(rs.getString("nome"));
+				    beanAlbero.setPathImmagine(rs.getString("path_immagine"));
+				    beanAlbero.setFrutto(rs.getBoolean("frutto"));
+				    beanGiardino.setAlbero(beanAlbero);
+				    alberiPosseduti.add(beanGiardino);
 				}
 			}
 		}
