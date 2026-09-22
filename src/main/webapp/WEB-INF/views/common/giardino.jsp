@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Il tuo giardino personale</title>
-	<link rel="stylesheet" href="style.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/style.css" type="text/css">
 </head>
 <body>
 

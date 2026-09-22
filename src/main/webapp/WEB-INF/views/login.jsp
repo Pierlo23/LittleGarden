@@ -29,10 +29,10 @@
 	<fieldset>
 		<legend>Login</legend>
 		<label for="email">Email</label>
-		<input id="email" type="text" name="email" placeholder="inserisci l'email">
+		<input class="textinput" type="text" name="email" placeholder="inserisci l'email">
      	<br>   
      	<label for="password">Password</label>
-     	<input id="password" type="password" name="password" placeholder="inserisci la password">
+     	<input class="textinput" type="password" name="password" placeholder="inserisci la password">
      	<br>
      	<div class="pulsanti">
      		<input class="pulsante" type="submit" value="Login"/>

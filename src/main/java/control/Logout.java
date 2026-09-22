@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class Logout
  */
-@WebServlet("/common/logout")
+@WebServlet("/Logout")
 public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -30,7 +30,8 @@ public class Logout extends HttpServlet {
 		if (ruolo != null) {
 			request.getSession().invalidate();
 		}
-	}
+		response.sendRedirect(request.getContextPath() + "/index.jsp");
+		}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
