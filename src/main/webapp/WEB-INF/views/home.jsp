@@ -10,9 +10,9 @@
 	<link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-	<nav id="navbar">
+	<nav id="navhome">
 			<a href="${pageContext.request.contextPath}/Home">
-				<img src="${pageContext.request.contextPath}/immagini/logo.png" alt="logo LittleGarden" width="150">
+				<img src="${pageContext.request.contextPath}/Immagini/logo_w.png" alt="logo LittleGarden" width="150">
 			</a>
 			<ul>
 				<li><a href="${pageContext.request.contextPath}/Catalogo">Catalogo</a></li>

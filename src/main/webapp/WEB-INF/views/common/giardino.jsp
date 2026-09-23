@@ -12,7 +12,7 @@
 
 	<nav id="navbar">
 		<a href="${pageContext.request.contextPath}/Home">
-			<img src="${pageContext.request.contextPath}/immagini/logo.png" alt="logo LittleGarden" width="150">
+			<img src="${pageContext.request.contextPath}/Immagini/logo.png" alt="logo LittleGarden" width="150">
 		</a>
 		<ul>
 			<li><a href="${pageContext.request.contextPath}/Catalogo">Catalogo</a></li>

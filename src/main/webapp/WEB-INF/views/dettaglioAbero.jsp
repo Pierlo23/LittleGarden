@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Catalogo</title>
+	<title>Scheda Albero</title>
 	<link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
@@ -38,27 +36,10 @@
 			</c:choose>
 		</ul>
 	</nav>
-	
-	
-	<div id="catalogo">
-		<h2>Catalogo</h2>
-		<div class="prodotti">
-			<c:forEach var="albero" items="${alberi}">
-				<c:if test="${!albero.softDelete }">
-				<div class="prodotto">
-					<img src="${pageContext.request.contextPath}/Immagini?action=show&id=${albero.idAlbero}" alt= "Foto <c:out value='${albero.nome}'/>" width="200">
-					<h3><c:out value="${albero.nome}"/></h3>
-                    <p>Descrizione: <c:out value="${albero.descrizione}"/></p>
-                    <p>Prezzo: &euro; <c:out value="${albero.prezzo}"/></p>
-                    <form action="${pageContext.request.contextPath}/Carrello" method="POST">
-                    	<input type="hidden" name="action" value="addC">
-                    	<input type="hidden" name="id" value="${albero.idAlbero}">
-                    	<input type="submit" value="Aggiungi al Carrello">
-                    </form>
-				</div>
-				</c:if>
-			</c:forEach>
-		</div>
+	<div class="dettaglio">
+		<div class="info-albero">
+			<h2>${albero.nome}</h2>
+		</div>	
 	</div>
 </body>
 </html>

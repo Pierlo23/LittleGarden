@@ -12,7 +12,7 @@
 <body>
 
 <a href="${pageContext.request.contextPath}/Home">
-	<img src="${pageContext.request.contextPath}/immagini/logo.png" alt="logo LittleGarden" width="150">
+	<img src="${pageContext.request.contextPath}/Immagini/logo.png" alt="logo LittleGarden" width="150">
 </a>
 
 <c:if test="${not empty errors}">
@@ -36,7 +36,6 @@
      	<br>
      	<div class="pulsanti">
      		<input class="pulsante" type="submit" value="Login"/>
-     		<input class="pulsante" type="reset" value="Reset"/>
 		</div>
 	</fieldset>
 </form>

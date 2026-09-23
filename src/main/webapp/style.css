@@ -4,28 +4,45 @@
 body {
 	font-family: Verdana, Helvetica, Arial, sans-serif;
 	font-size: small;
-	background-color: #dce1de;
+	background-color: #f8f9f5;
 }
 
 p {
 	color: 1f2421;
 }
 
-h1 {
-	color: #1f2421;
+h1, h2{
+	color: #2d231e;
 	font-size: 2.5rem;
 	
 }
 
+h3 {
+	color: #2d231e;
+	font-size: 1.5rem;
+}
+
 nav#navbar {
-	background-color:  #216869;
+	background-color:  #f8f9f5;
 	border-radius: 15px 15px 15px 15px;
 	align-items: center;
-	padding: 1.5rem 3rem;
+	padding: 0.5rem 3rem;
 	display: flex;
 }
 
-#navbar ul {
+nav#navhome {
+	background-image:  url('Immagini/background_image.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	border-radius: 15px 15px 15px 15px;
+	align-items: center;
+	padding: 1.5rem 2.5rem;
+	display: flex;
+}
+
+
+#navbar ul, #navhome ul {
 	display: flex;
 	align-items: center;
 	gap: 5rem;
@@ -33,15 +50,22 @@ nav#navbar {
 }
 
 #navbar ul li a {
-	color: #dce1de;
+	color: #1b4332;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 1rem;
+}
+
+#navhome ul li a{
+	color: #f8f9f5;
 	text-decoration: none;
 	display: inline-block;
 	font-size: 1rem;
 }
 
 form.login {
-	background-color: #216869;
-	border-radius: 30px;
+	background-color: rgba(26, 67, 50, 0.85);
+	border-radius: 26px;
 	padding: 40px;
 	width: 90%;
 	max-width: 350px;
@@ -65,29 +89,29 @@ form.login fieldset {
 form.login .textinput {
 	width: 90%;
 	padding: 10px;
-	margin-top: 5px;
-	margin-bottom: 20px;
+	margin-top: 20px;
+	margin-bottom: 10px;
 	font-family: Verdana, Helvetica, Arial, sans-serif;
 	border-style: solid; 
 	border-width: 2px;
-	border-color: #dce1de; 
-	border-radius: 20px;
+	border-color: #52b788; 
+	border-radius: 10px;
 }
 
 form.login .pulsante {
 	display: inline-block;
-	background-color: #9cc5a1; 
-	color: #1f2421; 
-	padding: 10px 20px; 
-	margin-right: 30px; 
+	background-color: #f8f9f5; 
+	color: #2d231e; 
+	padding: 10px 50px; 
+	margin: 0 15px;
 	border-style: solid; 
 	border-width: 2px;
 	border-radius: 20px;
-	border-color: #9cc5a1;
+	border-color: #52b788;
 }
 
 form.login legend {
-	color: #dce1de;
+	color: #f8f9f5;
 	font-size: 150%;
 	font-weight: bold;
 	margin-bottom: 15px;
@@ -117,6 +141,35 @@ p#crea {
 div.inserimento {
 	border-radius: 20px;
 	background-color: #49a078;
+}
+
+.prodotti {
+	overflow: hidden;
+}
+
+.prodotti {
+	float: left;
+	width: 27%;
+	margin: 1.5%;
+	padding: 15px;
+	border: 1px solid #ccc;
+	text-align: center;
+	background-color: #fafafa;
+	border-radius: 10px;
+}
+
+.prodotto:hover {
+	background-color: #f0f0f0;
+}
+
+.prodotto img {
+	width: 100%;
+	height: auto;
+}
+
+div  h2 {
+	text-align: center;
+	margin-top: 20px;
 }
 
 @media screen and (max-width: 750px) {
@@ -169,5 +222,13 @@ div.inserimento {
 		width: 100%;
 		max-width: none;
 		text-align: center;
+	}
+}
+
+@media (max-width: 600px) {
+	.prodotto {
+		float: none;
+		width: 100%;
+		margin: 10px 0;
 	}
 }
