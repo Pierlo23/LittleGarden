@@ -167,6 +167,13 @@ div.inserimento {
 	height: auto;
 }
 
+.link-prodotto {
+	text-decoration: none;
+	color: inherit;
+	display: block;
+}
+
+
 div  h2 {
 	text-align: center;
 	margin-top: 20px;

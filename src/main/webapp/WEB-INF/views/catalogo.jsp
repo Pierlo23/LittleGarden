@@ -45,17 +45,19 @@
 		<div class="prodotti">
 			<c:forEach var="albero" items="${alberi}">
 				<c:if test="${!albero.softDelete }">
-				<div class="prodotto">
-					<img src="${pageContext.request.contextPath}/Immagini?action=show&id=${albero.idAlbero}" alt= "Foto <c:out value='${albero.nome}'/>" width="200">
-					<h3><c:out value="${albero.nome}"/></h3>
-                    <p>Descrizione: <c:out value="${albero.descrizione}"/></p>
-                    <p>Prezzo: &euro; <c:out value="${albero.prezzo}"/></p>
-                    <form action="${pageContext.request.contextPath}/Carrello" method="POST">
-                    	<input type="hidden" name="action" value="addC">
-                    	<input type="hidden" name="id" value="${albero.idAlbero}">
-                    	<input type="submit" value="Aggiungi al Carrello">
-                    </form>
-				</div>
+				<a href="${pageContext.request.contextPath}/dettaglioAlbero?id=${albero.idAlbero}" class="link-dettaglios">
+					<div class="prodotto">
+						<img src="${pageContext.request.contextPath}/Immagini?action=show&id=${albero.idAlbero}" alt= "Foto <c:out value='${albero.nome}'/>" width="200">
+						<h3><c:out value="${albero.nome}"/></h3>
+                    	<p>Descrizione: <c:out value="${albero.descrizione}"/></p>
+                    	<p>Prezzo: &euro; <c:out value="${albero.prezzo}"/></p>
+                    	<form action="${pageContext.request.contextPath}/Carrello" method="POST">
+                    		<input type="hidden" name="action" value="addC">
+                    		<input type="hidden" name="id" value="${albero.idAlbero}">
+                    		<input type="submit" value="Aggiungi al Carrello">
+                    	</form>
+					</div>
+				</a>	
 				</c:if>
 			</c:forEach>
 		</div>
