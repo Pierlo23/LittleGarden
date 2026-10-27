@@ -1,0 +1,150 @@
+@charset "UTF-8";
+
+body {
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-size: small;
+	background-color: #f8f9f5;
+}
+
+p {
+	color: 1f2421;
+}
+
+h1, h2{
+	color: #2d231e;
+	font-size: 2.5rem;
+	
+}
+
+h3 {
+	color: #2d231e;
+	font-size: 1.5rem;
+}
+
+form.login {
+	background-color: rgba(26, 67, 50, 0.85);
+	border-radius: 26px;
+	padding: 40px;
+	width: 90%;
+	max-width: 350px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10vh;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+form.login input {
+	display: block;
+	margin-bottom: 5px;
+}
+
+form.login fieldset {
+	border-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+form.login .textinput {
+	width: 90%;
+	padding: 10px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	border-style: solid; 
+	border-width: 2px;
+	border-color: #52b788; 
+	border-radius: 10px;
+}
+
+form.login .pulsante {
+	display: inline-block;
+	background-color: #f8f9f5; 
+	color: #2d231e; 
+	padding: 10px 50px; 
+	margin: 0 15px;
+	border-style: solid; 
+	border-width: 2px;
+	border-radius: 20px;
+	border-color: #52b788;
+}
+
+form.login legend {
+	color: #f8f9f5;
+	font-size: 150%;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+
+form.login label {
+	color: #dce1de;
+	font-size: 1.1em;
+}
+
+form.login .pulsanti {
+    text-align: center;
+    margin-top: 15px;  
+}
+
+p#crea {
+	width: 90%;
+	max-width: 350px;
+	margin-top: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px; 
+	color: #1f2421; 
+	font-weight: bold;
+}
+
+@media screen and (max-width: 750px) {
+	h1{
+		font-size: 2rem;
+	}
+	
+	nav#navbar {
+		padding: 1rem;
+		flex-direction: column;
+		gap: 1rem;
+	}
+	
+	#navbar ul {
+		gap: 2rem;
+		padding: 0;
+	}
+}
+
+@media screen and (max-width: 540px) {
+	
+	h1 {
+		font-size: 1.5rem;
+	}
+	#navbar ul {
+		flex-direction: column;
+		gap: 1rem;
+	}
+	
+	form.login {
+		width: 100%;
+		max-width: none;
+		padding: 20px;
+		margin-top: 5vh;
+		border-radius: 15px;
+	}
+	
+	form.login .textinput {
+		width: 100%;
+		box-sizing: border-box;
+	}
+	
+	form.login .pulsante {
+		width: 100%;
+		margin-right: 0;
+		margin-bottom: 10px;
+	}
+	
+	p#crea {
+		width: 100%;
+		max-width: none;
+		text-align: center;
+	}
+}

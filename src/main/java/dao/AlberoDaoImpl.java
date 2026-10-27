@@ -80,6 +80,35 @@ public class AlberoDaoImpl implements AlberoDao {
 	}
 	
 	@Override
+	public synchronized List<Albero> doRetrieveAllAdmin(String order) throws SQLException {
+		List<Albero> alberi = new LinkedList<>();
+	    String selectSQL = "SELECT * FROM " + TABLE_NAME; 
+	    
+	    if (order != null && !order.isEmpty()) {
+	        selectSQL += " ORDER BY " + order; 
+	    }
+	    
+	    try (Connection connection = ds.getConnection();
+	            PreparedStatement ps = connection.prepareStatement(selectSQL);
+	            ResultSet rs = ps.executeQuery()) {
+	        while (rs.next()) {
+	            Albero bean = new Albero();
+	            bean.setIdAlbero(rs.getInt("id"));
+	            bean.setNome(rs.getString("nome"));
+	            bean.setDescrizione(rs.getString("descrizione"));
+	            bean.setPrezzo(rs.getDouble("prezzo"));
+	            bean.setQuantita(rs.getInt("quantita"));
+	            bean.setPathImmagine(rs.getString("path_immagine"));
+	            bean.setMimeType(rs.getString("mime_type"));
+	            bean.setFrutto(rs.getBoolean("frutto"));
+	            bean.setSoftDelete(rs.getBoolean("soft_delete"));
+	            alberi.add(bean);
+	        }
+	    }
+	    return alberi;
+	}
+	
+	@Override
 	 public synchronized Albero doRetrieveByKey(int id) throws SQLException {
 	        Albero bean = new Albero();
 	        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE id = ? AND soft_delete = FALSE";
@@ -113,5 +142,35 @@ public class AlberoDaoImpl implements AlberoDao {
 	            return result != 0;
 	        }
 	    }
-	
+	  
+	  @Override
+	    public synchronized boolean doUpdate(Albero albero) throws SQLException {
+	     
+	        String updateSQL = "UPDATE " + TABLE_NAME + " SET prezzo = ?, quantita = ?, soft_delete = ? WHERE id = ?";
+	        
+	        try (Connection connection = ds.getConnection();
+	             PreparedStatement ps = connection.prepareStatement(updateSQL)) {
+	            
+	            ps.setDouble(1, albero.getPrezzo());
+	            ps.setInt(2, albero.getQuantita());
+	            ps.setBoolean(3, albero.isSoftDelete());
+	            ps.setInt(4, albero.getIdAlbero()); 
+	            
+	            int result = ps.executeUpdate();
+	            return result != 0; 
+	        }
+	    }
+	  
+	  @Override
+	  public synchronized boolean doRestore(int id) throws SQLException {
+	      String restoreSQL = "UPDATE " + TABLE_NAME + " SET soft_delete = FALSE WHERE id = ?";
+	      
+	      try (Connection connection = ds.getConnection();
+	           PreparedStatement ps = connection.prepareStatement(restoreSQL)) {
+	          
+	          ps.setInt(1, id);
+	          int result = ps.executeUpdate();
+	          return result != 0;
+	      }
+	  }
 }

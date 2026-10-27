@@ -59,8 +59,8 @@ public class Immagini extends HttpServlet {
 		}
 		alberoDao = new AlberoDaoImpl(ds);
 		// Crea la cartella uploads
-		String uploadPath = getServletContext().getRealPath(File.separator + UPLOAD_DIR);
-		File uploadDir = new File(uploadPath);
+		
+		File uploadDir = new File(UPLOAD_DIR);
 		if (!uploadDir.exists())
 			uploadDir.mkdir();
 	}
@@ -112,7 +112,7 @@ public class Immagini extends HttpServlet {
 				if (originalFileName != null && !originalFileName.isEmpty() && part.getSize() > 0) {
 					String mimeType = part.getContentType();
 					String uniqueFileName = buildUniqueFileName(part);
-					String uploadPath = getServletContext().getRealPath(File.separator + UPLOAD_DIR + File.separator + uniqueFileName);
+					String uploadPath = UPLOAD_DIR + File.separator + uniqueFileName;
 					Albero bean = new Albero();
 					bean.setIdAlbero(idAlbero);
 					bean.setMimeType(mimeType);

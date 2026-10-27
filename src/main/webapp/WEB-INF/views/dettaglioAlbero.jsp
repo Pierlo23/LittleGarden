@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-	<nav id="navbar">
+	<nav class="navbar">
 		<a href="${pageContext.request.contextPath}/Home">
 			<img src="${pageContext.request.contextPath}/Immagini/logo.png" alt="logo LittleGarden" width="150">
 		</a>
@@ -39,6 +39,7 @@
 	<div class="dettaglio">
 		<div class="info-albero">
 			<h2>${albero.nome}</h2>
+			<p>${albero.descrizione}
 		</div>	
 	</div>
 </body>

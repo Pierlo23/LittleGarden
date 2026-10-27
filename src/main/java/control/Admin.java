@@ -47,7 +47,7 @@ public class Admin extends HttpServlet {
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	try {
-            request.setAttribute("alberi", alberoDao.doRetrieveAll(""));
+            request.setAttribute("alberi", alberoDao.doRetrieveAllAdmin(""));
             
         } catch (SQLException e) {
             System.err.println("Errore nel recupero alberi: " + e.getMessage());
@@ -68,6 +68,10 @@ public class Admin extends HttpServlet {
 					insertAlbero(request);
 				} else if (action.equalsIgnoreCase("delete")) {
 					deleteAlbero(request);
+				} else if (action.equalsIgnoreCase("update")) {
+					updateAlbero(request);
+				} else if (action.equalsIgnoreCase("restore")) {
+					restoreAlbero(request);
 				}
 			}
 		} catch (SQLException e ) {
@@ -77,18 +81,17 @@ public class Admin extends HttpServlet {
 	}
 
 	private void deleteAlbero(HttpServletRequest request) throws SQLException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		alberoDao.doDelete(id);
+		int idAlbero = Integer.parseInt(request.getParameter("id"));
+		alberoDao.doDelete(idAlbero);
 	}
 
 	private void insertAlbero(HttpServletRequest request) throws SQLException {
-		//lettura parametri
 		String nome = request.getParameter("nome");
 		String descrizione = request.getParameter("descrizione");
 		double prezzo = Double.parseDouble(request.getParameter("prezzo"));
 		int quantita = Integer.parseInt(request.getParameter("quantita"));
 		boolean frutto = request.getParameter("frutto") != null;
-		//creazione oggetto
+		
 		Albero albero = new Albero();
 		albero.setNome(nome);
 		albero.setDescrizione(descrizione);
@@ -99,4 +102,22 @@ public class Admin extends HttpServlet {
 		alberoDao.doSave(albero);
 	}
 
+	
+	private void updateAlbero(HttpServletRequest request) throws SQLException {
+		int idAlbero = Integer.parseInt(request.getParameter("id"));
+		double prezzo = Double.parseDouble(request.getParameter("prezzo"));
+	    int quantita = Integer.parseInt(request.getParameter("quantita"));
+
+	    Albero albero = alberoDao.doRetrieveByKey(idAlbero);
+	    
+	    albero.setPrezzo(prezzo);
+	    albero.setQuantita(quantita);
+	    alberoDao.doUpdate(albero);
+	}
+	
+	private void restoreAlbero(HttpServletRequest request) throws SQLException {
+		int idAlbero = Integer.parseInt(request.getParameter("id"));
+		
+		alberoDao.doRestore(idAlbero);
+	}
 }

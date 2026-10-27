@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Catalogo</title>
-	<link rel="stylesheet" href="style.css" type="text/css">
+	<link rel="stylesheet" href="Style/catalogo.css" type="text/css">
 </head>
 <body>
 	<nav id="navbar">

@@ -7,10 +7,10 @@
 <head>
 <meta charset="UTF-8">
 	<title>Homepage</title>
-	<link rel="stylesheet" href="style.css" type="text/css">
+	<link rel="stylesheet" href="Style/home.css" type="text/css">
 </head>
 <body>
-	<nav id="navhome">
+	<nav id="navbar">
 			<a href="${pageContext.request.contextPath}/Home">
 				<img src="${pageContext.request.contextPath}/Immagini/logo_w.png" alt="logo LittleGarden" width="150">
 			</a>

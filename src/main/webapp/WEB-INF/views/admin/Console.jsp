@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Console Admin</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/style.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/Style/console.css" type="text/css">
 </head>
 <body>
 	<nav id="navbar">
@@ -113,7 +113,7 @@
 										</form>
 										
 										<form action="${pageContext.request.contextPath}/admin/GestioneCatalogo" method="POST" class="riga-form">
-											<input type="hidden" name="action" value="restore">
+											<input type="hidden" name="action" value="delete">
 											<input type="hidden" name="id" value="<c:out value='${albero.idAlbero}'/>">
 											<button type="submit" class="btn-delete">Rimuovi dal catalogo</button>
 										</form>
